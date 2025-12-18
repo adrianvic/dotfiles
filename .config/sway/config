@@ -194,7 +194,7 @@ bindsym $ctrl+$sup+f exec xdg-open https://
 bindsym $sup+e exec xdg-open ~
 
 # Kill Window | "Assasquinar" janela (mata essa "pomba" seu "assasquino")
-bindsym $sup+q kill
+bindsym $sup+Shift+q kill
 
 # Change focus | Mudar foco
 bindsym $sup+Left focus left
@@ -207,10 +207,8 @@ bindsym $sup+f fullscreen toggle
 
 # Change container layout (stacked, tabbed, toggle split) | Mudar layout do conteúdo (estacado, agrupado, ativar/desativar partição)
 bindsym $sup+s layout toggle split
-bindsym $sup+a layout toggle tabbed split
-bindsym $sup+Shift+w layout tabbed
-bindsym $sup+Shift+a layout toggle tabbed stacking split
-bindsym $sup+Shift+Space layout toggle tabbed stacking split
+bindsym $sup+a layout toggle tabbed
+bindsym $sup+Shift+a layout toggle stacking
 
 # Resize floating window | Redimensionar janela flutuante
 #bindsym $sup+Shift+h exec swaymsg -t command resize shrink width 50px
@@ -227,7 +225,6 @@ bindsym $alt+Tab focus mode_toggle
 
 # Center | Centro
 bindsym $sup+Shift+c move position center
-bindsym $sup+c move position center
 
 # Sway reload | Recarregar o Sway
 bindsym $sup+$ctrl+r reload
@@ -317,14 +314,6 @@ bindsym $sup+d workspace back_and_forth
 
 # Termite (Terminal)
 #for_window [app_id=".*termite$"] floating enablew
-
-# Container
-bindsym $sup+Shift+g exec swaymsg \
-    '[con_id=focused]' \
-    move container to mark tabgroup; \
-    [mark=tabgroup] \
-    layout tabbed; \
-    unmark tabgroup
 
 # *** Move | Mover ***
 bindsym $sup+Shift+Left move left
