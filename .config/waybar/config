@@ -1,0 +1,183 @@
+// 😉 Config created by Felipe Facundes
+//  Telegram: @FeFacundes
+//  Telegram Group: t.me/winehq_linux
+// 😅 Dúvidas:https://github.com/Alexays/Waybar/wiki/Module:-Custom
+// vim:ft=json
+
+{
+    // "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 30, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": ["custom/menu", "sway/workspaces", "sway/window"], //"sway/mode", "sway/scratchpad", "sway/window"
+    //"modules-center": ["sway/window"],
+    "modules-right": ["custom/playerctl2", "pulseaudio", "custom/wf-recorder2", "network", "bluetooth", "custom/gpu", "idle_inhibitor", "cpu", "memory", "disk", "temperature", "battery", "custom/pacman", "custom/weather", "clock", "custom/clipboard", "tray", "custom/poweroff"],
+    // Modules configuration
+    // "sway/workspaces": {
+    //     "disable-scroll": true,
+    //     "all-outputs": true,
+    //     "format": "{name}: {icon}",
+    //     "format-icons": {
+    //         "1": "",
+    //         "2": "",
+    //         "3": "",
+    //         "4": "",
+    //         "5": "",
+    //         "urgent": "",
+    //         "focused": "",
+    //         "default": ""
+    //     }
+    // },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "[ xxX ]",   //""
+            "deactivated": "[ zzZ ]"  //""
+        }
+    },
+
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+
+    "clock": {
+        "timezone": "America/Sao_Paulo", // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "[ {:%H:%M} ]", 
+        "format-alt": "[ {:%Y-%m-%d} ]",
+        "on-click-right": "wldash",
+        "on-click-middle": "gsimplecal"
+    },
+
+    "cpu": {
+        "interval": 5,
+        "format": "[ CPU {usage}% ]",
+        "tooltip-format": "{}",
+        "states": {
+            "warning": 70,
+            "critical": 90
+        },
+        "on-click": "kitty -e watch cpupower frequency-info"
+    },
+
+    "memory": {
+        "interval": 5,
+        "format": "[ RAM {}% ]", // ""  "
+        "tooltip-format": "{used:0.1f}G used\n{avail:0.1f}G available\n{total:0.1f}G total",
+        "states": {
+            "warning": 70,
+            "critical": 90
+        },
+        "on-click": "kitty -e htop"
+    },
+
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "[ {temperatureC}°C {icon} ]",
+        "format-icons": ["","","[!]"], //["", "", ""]
+        "on-click": "kitty -e watch sensors"
+    },
+       "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}%+",
+        "format-plugged": "{capacity}%~",
+        // "format-alt": "{time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["[xx]", "[- ]", "[--]", "[=-]", "[==]"]
+    },
+
+    // "battery#bat2": {
+    //     "bat": "BAT2"
+    // },
+
+    "bluetooth": {
+        "format": "{icon}",
+        "format-icons": {
+            "enabled": "[ ᛒ ON ]",
+            "disabled": "[ ᛒ OFF ]"
+        },
+        "on-click": "bash -c ${HOME}/.config/waybar/scripts/rofi-bluetooth 2> /dev/null" ,
+        "tooltip-format": "{}"
+    },
+
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} ({signalStrength}%) WLAN",
+        "format-ethernet": "{ipaddr}/{cidr} ETH", //
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "format-linked": "{ifname} (No IP) LNK",
+        "format-disconnected": "Disconnected", //⚠
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "on-click-right": "alacritty -e iwctl"
+    },
+
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "[ VOL {volume}% {icon} {format_source} ]",
+        "format-bluetooth": "[ VOL {volume}% {icon} {format_source} ]",
+        "format-bluetooth-muted": "[ VOL (M) {icon} {format_source} ]",
+        "format-muted": "[ VOL(M) {format_source} ]",
+        "format-source": " MIC {volume}%",
+        "format-source-muted": "(M)",
+        "format-icons": {
+            "headphone": "HEAD",
+            "hands-free": "HFREE",
+            "headset": "HSET",
+            "phone": "PHN",
+            "portable": "PRT",
+            "car": "CAR",
+            "default": ["∙", "։ ", "⁖"]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "disk": {
+        "interval": 30,
+        "format": "[ (/) {used}/{total} ]",
+        "format-alt": "Free: {}%",
+        "tooltip-format": "{used} used\n{free} free\n{total} total",
+        "on-click-right": "pcmanfm",
+        "on-click-middle": "kitty -e watch df -h /",
+        "path": "/",
+        "states": {
+            "low": 0,
+            "mid": 25,
+            "high": 50
+        }
+    },
+ 
+    "custom/clipboard": {
+        "format" : "[CLIPBOARD]",
+        "tooltip": false,  //   󰅇 󱓦 󱉥 󱉦 󱓥 
+        "on-click": "cliphist list | rofi -dmenu | cliphist decode | wl-copy",
+        "on-click-right": "cliphist list | dmenu | cliphist decode | wl-copy",
+        "on-click-middle": "cliphist wipe",
+        "signal": 8
+	},
+        
+    "custom/uptime": {
+        "interval": 1,
+        "signal": 8,
+        "tooltip-format": "<big>{}</big></tt>",
+        "format":"ﴻ {}" , //"{} ﴻ" 🔝
+        "exec": "uptime | awk '{print $3}' | tr -d ','",
+        "exec-if": "exit 0",
+        "on-click": "swaynag -t warning -m 'Power Options:' -b 'Exit' 'loginctl terminate-session self' -b 'LockScreen' 'swaylock' -b 'Suspend' 'systemctl suspend; swaylock' -b 'Reboot' 'systemctl -i reboot' -b 'Poweroff' 'openrc-shutdown -p now && systemctl shutdown -h now'"
+    }
+}
