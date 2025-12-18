@@ -78,16 +78,15 @@ font pango:"UbuntuMono Nerd Font" 10
 # Borders | Bordas
 # only works on i3 and not on Sway: new_window pixel 0
 # só funciona no i3 e não no Sway: new_window pixel 0
-smart_borders on
-default_border normal 0
-default_border pixel 0
-default_border none
-default_floating_border pixel 3
-mode hide
+smart_borders off
+default_border normal 2
+default_floating_border normal 4
+titlebar_border_thickness 2
+# mode hide
 hide_edge_borders smart
-hide_edge_borders both
-hide_edge_borders --i3 both
-hide_edge_borders --i3 smart
+# hide_edge_borders both
+# hide_edge_borders --i3 both
+# hide_edge_borders --i3 smart
 
 floating_modifier Mod1
 
@@ -105,9 +104,9 @@ focus_on_window_activation focus
 #set_from_resource $bg background
 
 # classe                borda    fundo   texto      ind.       borda filho
-client.focused          #1f1f1f  #1f1f1f #ffffff    #aeff00    #aeff00
-client.focused_inactive #ffffff  #4f4f4f #ffffff    #ffcf7c    #ffcf7c
-client.unfocused        #000000  #000000 #ffffff    #ffcf7c    #fa8100
+client.focused_inactive #1f1f1f  #4f4f4f #ffffff    #aeff00    #1f1f1f
+client.focused		#ffffff  #000000 #ffffff    #ffcf7c    #ffffff
+client.unfocused        #000000  #000000 #ffffff    #ffcf7c    #000000
 client.urgent           #2f343a  #900000 #ffffff    #900000    #900000
 client.placeholder      #000000  #0c0c0c #ffffff    #000000    #0c0c0c
 
@@ -207,8 +206,8 @@ bindsym $sup+f fullscreen toggle
 
 # Change container layout (stacked, tabbed, toggle split) | Mudar layout do conteúdo (estacado, agrupado, ativar/desativar partição)
 bindsym $sup+s layout toggle split
-bindsym $sup+a layout toggle tabbed
-bindsym $sup+Shift+a layout toggle stacking
+bindsym $sup+w layout toggle tabbed split
+bindsym $sup+a layout toggle stacking tabbed
 
 # Resize floating window | Redimensionar janela flutuante
 #bindsym $sup+Shift+h exec swaymsg -t command resize shrink width 50px
@@ -242,8 +241,9 @@ bindsym $sup+Space exec rofi -no-lazy-grab -show drun -modi drun
 bindsym $sup+l exec swaylock
 
 # Screenshot | Captura de tela
-bindsym $ctrl+Print exec bash -c 'grim -t png - | wl-copy && wl-paste > "${HOME}/Pictures/Capture/$(date +"%Y-%m-%d %H:%M:%S") - Capture.png"'
-bindsym Print exec bash -c 'grim -t png | wl-copy'
+bindsym $ctrl+Shift+Print exec bash -c 'grim -t png - | wl-copy && wl-paste > "${HOME}/Pictures/Capture/$(date +"%Y-%m-%d %H:%M:%S") - Capture.png"'
+bindsym $ctrl+Print exec bash -c 'grim -t png | wl-copy'
+bindsym Print exec bash -c 'slurp | grim -g - - | wl-copy'
 
 # Screen recording | Gravar tela
 #bindsym $ctrl+$alt+r exec bash -c '$term -e ffmpeg -video_size 1360x768 -framerate 25 -f x11grab -i :0.0 -f pulse -ac 2 -i default ${HOME}/Videos/Tela_$(date +%d-%m-%Y_%H:%M:%S).mkv'
@@ -321,6 +321,9 @@ bindsym $sup+Shift+Right move right
 bindsym $sup+Shift+Down move down
 bindsym $sup+Shift+Up move up
 
+# Move floating windows | Mover janelas flutuantes
+bindsym $alt+Shift+Up move +0 px +10 px
+
 # *** Resize | Redimensionar ***
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -335,10 +338,10 @@ mode "resize" {
 	# Apertar direita vai aumentar a largura da janela.
 	# Apertar cima vai aumentar a altura da janela.
 	# Apertar baixo vai diminuir a altura da janela.
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 20 px or 20 ppt
+        bindsym Down resize grow height 20 px or 20 ppt
+        bindsym Up resize shrink height 20 px or 20 ppt
+        bindsym Right resize grow width 20 px or 20 ppt
 
         # back to normal: Enter or Escape or $sup+r
         bindsym Return mode "default"

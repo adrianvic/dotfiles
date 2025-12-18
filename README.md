@@ -14,16 +14,17 @@ sway swayidle swaybg waybar rofi wlrctl cliphist lights ly kwalletd6 rofi-power-
 ## Keyboard Shortcuts
 ### Window management
 - `Super+Shift+[Arrow Keys]` Move windows
-- `Super+Q` Close window
+- `Super+Shift+Q` Close window
 - `Ctrl+Alt+Esc` Kill window
 - `Super+Tab` Toggle floating window for selection
 - `Alt+Tab` Toggle focus between floating and tiling windows
 - `Super+Shift+C` Move window to center
 - `Super+F` Toggle fullscreen mode
 - `Super+S` Layout toggle split
-- `Super+A` Layout toggle tabbed
-- `Super+Shift+A` Layout toggle stacked
+- `Super+W` Layout toggle tabbed
+- `Super+A` Layout toggle stacked
 - `Super+Shift+[Arrow Keys]` Move window to workspace
+
 #### Resize mode
 - `Super+R` Enter resize mode
 - `Esc`/`Return` Exit resize mode
@@ -55,8 +56,9 @@ sway swayidle swaybg waybar rofi wlrctl cliphist lights ly kwalletd6 rofi-power-
 - `Ctrl+Esc` Task manager (HTOP)
 - `Ctrl+Super+F` Web browser (Floorp)
 - `Super+E` File explorer (xdg-open)
-- `Print` Screenshot to clipboard
-- `Ctrl+Print` Screenshot to pictures folder (`${HOME}/Pictures/Capture/${date + "%Y-%m-%d %H:%M:%S"} - Capture.png`)
+- `Print` Select screen area to save to clipboard
+- `Ctrl+Print` Saves a full screenshot to clipboard
+- `Ctrl+Shift+Print` Saves a full screenshot to `${HOME}/Pictures/Capture/${date + "%Y-%m-%d %H:%M:%S"} - Capture.png`)
 - `Ctrl+Alt+R` OBS Studio
 
 ### System
