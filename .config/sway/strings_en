@@ -1,0 +1,5 @@
+# *** Strings | Textos ***
+set $update_terminal_title "Full system upgrade"
+set $update_notification "Please authorize the system upgrade."
+
+

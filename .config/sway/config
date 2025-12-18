@@ -5,6 +5,11 @@
 # *** Variables | Variáveis ***
 set $term alacritty
 set $wallpaper ~/.config/sway/wallpaper.jpg
+set $startup_sound ${HOME}/.config/startup.mp3
+include strings_pt
+
+# *** Startup | Inicialização ***
+include startup
 
 # Input | Métodos de entrada
 # Run | Execute:	swaymsg -t get_inputs
@@ -34,7 +39,7 @@ input "SYNA2BA6:00 06CB:CE2C" {
 # To get the monitors IDs
 # Para saber a identificação dos monitores
 
-output HDMI-A-1 {
+#output HDMI-A-1 {
 #res 1360x768
 # mode 1920x1080@144Hz
 # Observe que o x-pos esquerdo do eDP1 é 1600 = 3200/2 e o y-pos inferior é 1020 + (1800/2) = 1920 = 0 + 1920
@@ -46,7 +51,7 @@ output HDMI-A-1 {
 # transform 180
 #dpms on
 #scale 2
-}
+#}
 
 # Miscellaneous Customizations | Customizações miscelâneas
 focus_follows_mouse no
@@ -131,7 +136,7 @@ bindsym $ctrl+Escape exec $term -e htop
 bindsym $ctrl+Shift+$alt+delete exec bash -c 'openrc-shutdown --poweroff now; systemctl poweroff'
 
 # Power options | Opções de energia
-bindsym $sup+Shift+l exec rofi -show p -modi p:'rofi-power-menu --symbols-font "Symbols Nerd Font Mono"' -theme Paper -theme-str 'window {width: 8em;} listview {lines: 6;}'
+bindsym $sup+Shift+l exec rofi -show p -modi p:'rofi-power-menu --symbols-font "Symbols Nerd Font Mono"' -theme-str 'window {width: 10em;} listview {lines: 6;}'
 
 # Mouse Click
 bindsym $sup+equal exec wlrctl pointer click right
@@ -158,7 +163,7 @@ bindsym $sup+$ctrl+Right exec wlrctl pointer move 10 0
 #bindsym $ctrl+$sup+Right exec wlrctl pointer move 40 0
 
 # System update | Atualizar o sistema
-bindsym $sup+u exec $term -e sudo pacman -Syu
+bindsym $sup+u exec dunstify $update_notification && $term -T $update_terminal_title -e sudo pacman -Syu 
 
 # Volume Pulseaudio
 bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_SINK@ .05+
@@ -175,8 +180,8 @@ bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_SINK@ toggle
 bindsym $sup+p exec pavucontrol
 
 # Brighteness | Brilho
-bindsym XF86MonBrightnessUp exec "light -A 2"
-bindsym XF86MonBrightnessDown exec "light -U 2"
+bindsym XF86MonBrightnessUp exec brightnessctl set 10%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 bindsym XF86ScreenSaver exec "echo 0 > /sys/class/backlight/intel_backlight/brightness"
 #bindsym --whole-window $sup+Shift+button4 exec "light -A 2"
 #bindsym --whole-window $sup+Shift+button5 exec "light -U 2"
@@ -185,6 +190,9 @@ bindsym XF86ScreenSaver exec "echo 0 > /sys/class/backlight/intel_backlight/brig
 
 # Playerctl (multimedia manager | gestor de multimídia)
 bindsym $alt+Space exec playerctl play-pause
+
+# Choose sound output | Escolher saída de som
+bindsym $alt+apostrophe exec rofi -show rofi-sound -modi "rofi-sound:~/.config/sway/rofi-sound-output-chooser"
 
 # Browser | Navegador
 bindsym $ctrl+$sup+f exec xdg-open https://
@@ -405,7 +413,7 @@ mode "$mode_gaps_outer" {
 exec waybar 
 
 # Start sound | Som de inicialização
-exec paplay "${HOME}/.config/startup.mp3" --volume=76767 &
+exec paplay "$startup_sound" --volume=76767 &
 
 # Sets Xwayland scale | Seta escala do Xwayland 
 exec xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2 &
@@ -432,6 +440,7 @@ exec swaybg --image $wallpaper
 bindsym $alt+1 exec wtype "2"
 bindsym $alt+Shift+1 exec wtype "@"
 
-# Autostart applications | Aplicações iniciadas automaticamente
-exec bash ~/.autostart.sh
+# For notifications, some (mostly electron) apps will hung when it's not running | Para notificações, alguns (geralmente electron) aplicativos congelam sem ele | https://bbs.archlinux.org/viewtopic.php?id=305413
+exec --no-startup-id dunst
+
 

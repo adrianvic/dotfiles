@@ -11,6 +11,14 @@ sway swayidle swaybg waybar rofi wlrctl cliphist lights ly kwalletd6 rofi-power-
 # SwayWM
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/bf0b98b5-8246-4737-bcf2-cf37287cc7b1" />
 
+## Changing language
+This is not a tutorial on changing your system language, this will only change the language of the configuration strings.
+
+In `.config/sway/config` replace XX from the line `import strings_XX` to a language code matching a language file in that same directory. 
+
+## Autostart applications
+Edit `.config/sway/startup` and add `exec yourapplication`.
+
 ## Keyboard Shortcuts
 ### Window management
 - `Super+Shift+[Arrow Keys]` Move windows

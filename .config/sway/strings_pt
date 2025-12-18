@@ -1,0 +1,5 @@
+# *** Strings | Textos ***
+set $update_terminal_title "Atualização completa do sistema"
+set $update_notification "Por favor, autorize a atualização."
+
+
