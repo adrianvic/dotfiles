@@ -32,7 +32,7 @@ Edit `.config/sway/startup` and add `exec yourapplication`.
 - `Super+W` Layout toggle tabbed
 - `Super+A` Layout toggle stacked
 - `Super+Shift+[Arrow Keys]` Move window to workspace
-
+In .config/sway/config replace XX from the line import strings_XX to a language code matching a language file in that same directory.
 #### Resize mode
 - `Super+R` Enter resize mode
 - `Esc`/`Return` Exit resize mode
@@ -77,6 +77,7 @@ Edit `.config/sway/startup` and add `exec yourapplication`.
 - `Super+Ctrl+R` Reload Sway
 - `Super+Shift+E` Exit Sway
 - `Ctrl+Super+Q` Kill Sway
+- `Alt+Apostrophe` Change audio output
 
 # ly display manager
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/5e8a8ab3-e872-4a85-b248-202ba8d9a36b" />
