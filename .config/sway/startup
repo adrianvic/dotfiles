@@ -1,1 +1,2 @@
 exec signal-desktop
+exec nextcloud
