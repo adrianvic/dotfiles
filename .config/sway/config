@@ -6,6 +6,7 @@
 set $term kitty
 set $wallpaper ~/.config/sway/wallpaper.jpg
 set $startup_sound ${HOME}/.config/startup.mp3
+set $keepassdb ~/Cloud/Documents/Database.kdbx
 include strings_pt
 
 # *** SwayFX ***
@@ -211,7 +212,15 @@ bindsym XF86ScreenSaver exec "echo 0 > /sys/class/backlight/intel_backlight/brig
 bindsym $alt+Space exec playerctl play-pause
 
 # Choose sound output | Escolher saída de som
-bindsym $alt+apostrophe exec rofi -show rofi-sound -modi "rofi-sound:~/.config/sway/rofi-sound-output-chooser"
+# bindsym $alt+apostrophe exec rofi -show rofi-sound -modi "rofi-sound:~/.config/sway/rofi-sound-output-chooser"
+bindsym $alt+aposthrophe exec rofi-pulse-select sink
+bindsym $alt+Shift+aposthrophe exec rofi-pulse-select source
+
+# Keepmenu (password manager | gerenciador de senhas)
+# Reloads database
+bindsym $sup+Menu exec keepmenu -d $keepassdb
+# Open loaded DB
+bindsym Menu exec keepmenu
 
 # Browser | Navegador
 bindsym $ctrl+$sup+f exec xdg-open https://
@@ -465,3 +474,6 @@ exec --no-startup-id dunst
 # Policy agent, asks for elevation when needed. Apps like GParted (or really any app that requires admin privileges) will not run without it.
 # Agente de políticas, pede por elevação quando necessário. Apps como GParted (ou qualquer app que precisa de permissões de administrador) não vão rodar sem ele.
 exec --no-startup-id soteria
+
+# Automation, apps will not be able to type in your behalf without this | Automação, apps não vão poder escrever por você sem isso
+exec --no-startup-id ydotoold
