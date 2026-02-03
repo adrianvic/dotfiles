@@ -213,8 +213,8 @@ bindsym $alt+Space exec playerctl play-pause
 
 # Choose sound output | Escolher saída de som
 # bindsym $alt+apostrophe exec rofi -show rofi-sound -modi "rofi-sound:~/.config/sway/rofi-sound-output-chooser"
-bindsym $alt+aposthrophe exec rofi-pulse-select sink
-bindsym $alt+Shift+aposthrophe exec rofi-pulse-select source
+bindsym $alt+apostrophe exec rofi-pulse-select sink
+bindsym $alt+Shift+apostrophe exec rofi-pulse-select source
 
 # Keepmenu (password manager | gerenciador de senhas)
 # Reloads database
