@@ -5,7 +5,7 @@ This is the repository for my dotfiles for Sway, forked from [Flipe Facundes](ht
 The dotfiles configuration references a lot of packages that may not be installed on your system:
 
 ```
-swayfx swayidle swaybg waybar rofi wlrctl cliphist lights ly kwalletd6 rofi-power-menu grim wl-clipboard xorg-xprop libpulse dunst
+swayfx swayidle swaybg waybar rofi wlrctl cliphist lights ly kwalletd6 rofi-power-menu grim wl-clipboard xorg-xprop libpulse dunst rofi-pulse-select soteria keepmenu
 ```
 
 # SwayWM
