@@ -3,7 +3,7 @@
 # Por tenkuma, originalmente por Felipe Facundes
 
 # *** Variables | Variáveis ***
-set $term alacritty
+set $term kitty
 set $wallpaper ~/.config/sway/wallpaper.jpg
 set $startup_sound ${HOME}/.config/startup.mp3
 include strings_pt
@@ -15,7 +15,7 @@ blur enable
 shadows enable
 corner_radius 0
 blur_noise .2
-blur_brightness .75
+blur_brightness .5
 blur_contrast .8
 blur_saturation 1
 blur_radius 1
@@ -37,14 +37,14 @@ input * xkb_numlock enabled
 #input "MANUFACTURER1 Keyboard" xkb_model "pc101"
 
 # Touchpad
-input "SYNA2BA6:00 06CB:CE2C" {
-    dwt enabled
+input "1739:52780:SYNA2BA6:00_06CB:CE2C_Touchpad" {
+    dwt false
     tap enabled
-    drag enabled
+    #drag enabled
 #    tap_button_map lmr
     tap_button_map lrm
     middle_emulation enabled
-#    natural_scroll enabled
+    natural_scroll enabled
     pointer_accel 0.2
     accel_profile adaptive
 }
@@ -54,22 +54,23 @@ input "SYNA2BA6:00 06CB:CE2C" {
 # To get the monitors IDs
 # Para saber a identificação dos monitores
 
-#output HDMI-A-1 {
-#res 1360x768
-# mode 1920x1080@144Hz
-# Observe que o x-pos esquerdo do eDP1 é 1600 = 3200/2 e o y-pos inferior é 1020 + (1800/2) = 1920 = 0 + 1920
-# pos 0 1020
-# subpixel rgb|bgr|vrgb|vbgr|none
-# subpixel rgb
-# background|bg <color> solid_color
-# Pode ser "90", "180", "270" para rotação; ou "flipped", "flipped-90", "flipped-180", "flipped-270" para aplicar uma rotação e inverter, ou "normal"
-# transform 180
-#dpms on
-#scale 2
-#}
+output eDP-1 {
+	#res 1360x768
+	mode 1920x1080@60.008Hz
+	#Observe que o x-pos esquerdo do eDP1 é 1600 = 3200/2 e o y-pos inferior é 1020 + (1800/2) = 1920 = 0 + 1920
+	#pos 0 1020
+	#subpixel rgb|bgr|vrgb|vbgr|none
+	subpixel rgb
+	#background|bg <color> solid_color
+ #Pode ser "90", "180", "270" para rotação; ou "flipped", "flipped-90", "flipped-180", "flipped-270" para aplicar uma rotação e inverter, ou "normal"
+	#transform 180
+	#dpms on
+	#scale 2
+}
 
 # Miscellaneous Customizations | Customizações miscelâneas
 focus_follows_mouse no
+focus_on_window_activation none
 
 set $gaps_inner_default 5
 set $gaps_outer_default 5
@@ -98,10 +99,13 @@ font pango:"UbuntuMono Nerd Font" 10
 # Borders | Bordas
 # only works on i3 and not on Sway: new_window pixel 0
 # só funciona no i3 e não no Sway: new_window pixel 0
-smart_borders off
-default_border normal 2
-default_floating_border normal 4
-titlebar_border_thickness 2
+
+#default_border none
+#font pango:monospace 0.001
+#titlebar_padding 1
+#titlebar_border_thickness 0
+#default_floating_border normal 4
+
 # mode hide
 hide_edge_borders smart
 # hide_edge_borders both
@@ -458,4 +462,6 @@ bindsym $alt+Shift+1 exec wtype "@"
 # For notifications, some (mostly electron) apps will hung when it's not running | Para notificações, alguns (geralmente electron) aplicativos congelam sem ele | https://bbs.archlinux.org/viewtopic.php?id=305413
 exec --no-startup-id dunst
 
-
+# Policy agent, asks for elevation when needed. Apps like GParted (or really any app that requires admin privileges) will not run without it.
+# Agente de políticas, pede por elevação quando necessário. Apps como GParted (ou qualquer app que precisa de permissões de administrador) não vão rodar sem ele.
+exec --no-startup-id soteria
