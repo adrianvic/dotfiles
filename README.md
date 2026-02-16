@@ -42,7 +42,7 @@ swayfx swayidle swaybg waybar rofi wlrctl cliphist lights ly kwalletd6 rofi-powe
 </details>
 
 # SwayWM
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/bf0b98b5-8246-4737-bcf2-cf37287cc7b1" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/cab0d46d-5e81-4aa5-9487-4ca52c719ebc" />
 
 ## Changing language
 This is not a tutorial on changing your system language, this will only change the language of the configuration strings.
@@ -56,7 +56,7 @@ Edit `.config/sway/startup` and add `exec yourapplication`.
 <details>
   <summary>Default modifiers</summary>
 
-- `Mod` is Super by default.
+- `Mod` is Super by default. Shows waybar while pressed.
 - `Menu` is the context menu button, generally only present in full-size keyboards.
 
 </details>
