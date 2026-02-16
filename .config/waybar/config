@@ -1,35 +1,39 @@
-// 😉 Config created by Felipe Facundes
-//  Telegram: @FeFacundes
-//  Telegram Group: t.me/winehq_linux
-// 😅 Dúvidas:https://github.com/Alexays/Waybar/wiki/Module:-Custom
+// By tenkuma
+// Originally by Felipe Facundes
+// Documentation: https://github.com/Alexays/Waybar/wiki/Module:-Custom
 // vim:ft=json
 
-{
-    // "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 30, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    "spacing": 4, // Gaps between modules (4px)
+[{
+    "bar_id": "bar-0",
+    "ipc": true,
+    "output": "eDP-1",
+    // "layer": "top",
+    "position": "bottom", // (top|bottom|left|right)
+    "height": 10, // remove for auto height
+    // "width": 1280,
+    "spacing": 0, // Gaps between modules
     // Choose the order of the modules
     "modules-left": ["custom/menu", "sway/workspaces", "sway/window"], //"sway/mode", "sway/scratchpad", "sway/window"
     //"modules-center": ["sway/window"],
-    "modules-right": ["custom/playerctl2", "pulseaudio", "custom/wf-recorder2", "network", "bluetooth", "custom/gpu", "idle_inhibitor", "cpu", "memory", "disk", "temperature", "battery", "custom/pacman", "custom/weather", "clock", "custom/clipboard", "tray", "custom/poweroff"],
+    // "modules-right": ["custom/playerctl2", "custom/wf-recorder2", "network", "pulseaudio", "bluetooth", "custom/gpu", "idle_inhibitor", "cpu", "memory", "disk", "temperature", "battery", "custom/pacman", "custom/weather", "clock", "custom/clipboard", "tray", "custom/poweroff"],
+    "modules-right": ["network", "pulseaudio", "bluetooth", "custom/gpu", "idle_inhibitor", "cpu", "memory", "disk", "temperature", "battery", "clock", "custom/clipboard", "tray"],
     // Modules configuration
-    // "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // },
+    "sway/workspaces": {
+        "disable-scroll": true,
+        //"all-outputs": true,
+        //"format": "{name}",
+	"format": "[{name}] {icon}",
+        "format-icons": {
+        //    "1": "",
+        //    "2": "",
+        //    "3": "",
+        //    "4": "",
+        //    "5": "",
+        //    "urgent": "",
+            "focused": "■",
+            "default": "□"
+        }
+    },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
@@ -123,8 +127,8 @@
         "tooltip-format": "{ifname} via {gwaddr}",
         "format-linked": "{ifname} (No IP) LNK",
         "format-disconnected": "Disconnected", //⚠
-        "format-alt": "{ifname}: {ipaddr}/{cidr}",
-        "on-click-right": "alacritty -e iwctl"
+        // "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "on-click-right": "kitty -e iwctl"
     },
 
     "pulseaudio": {
@@ -150,7 +154,7 @@
     "disk": {
         "interval": 30,
         "format": "[ (/) {used}/{total} ]",
-        "format-alt": "Free: {}%",
+        //"format-alt": "Free: {}%",
         "tooltip-format": "{used} used\n{free} free\n{total} total",
         "on-click-right": "pcmanfm",
         "on-click-middle": "kitty -e watch df -h /",
@@ -166,7 +170,7 @@
         "format" : "[CLIPBOARD]",
         "tooltip": false,  //   󰅇 󱓦 󱉥 󱉦 󱓥 
         "on-click": "cliphist list | rofi -dmenu | cliphist decode | wl-copy",
-        "on-click-right": "cliphist list | dmenu | cliphist decode | wl-copy",
+        // "on-click-right": "cliphist list | dmenu | cliphist decode | wl-copy",
         "on-click-middle": "cliphist wipe",
         "signal": 8
 	},
@@ -180,4 +184,29 @@
         "exec-if": "exit 0",
         "on-click": "swaynag -t warning -m 'Power Options:' -b 'Exit' 'loginctl terminate-session self' -b 'LockScreen' 'swaylock' -b 'Suspend' 'systemctl suspend; swaylock' -b 'Reboot' 'systemctl -i reboot' -b 'Poweroff' 'openrc-shutdown -p now && systemctl shutdown -h now'"
     }
-}
+},
+{
+    "bar_id": "bar-0",
+    "ipc": true,
+    "output": "HDMI-A-1",
+    "position": "top",
+    "height": 10,
+    "spacing": 0,
+    "modules-left": ["sway/workspaces"], 
+    "modules-right": ["sway/window"],
+
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "format": "[{name}] {icon}",
+        "format-icons": {
+        //    "1": "",
+        //    "2": "",
+        //    "3": "",
+        //    "4": "",
+        //    "5": "",
+        //    "urgent": "",
+            "focused": "■",
+            "default": "□"
+        }
+    }
+}]
