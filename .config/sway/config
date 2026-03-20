@@ -5,9 +5,15 @@
 # *** Variables | Variáveis ***
 set $term kitty
 set $wallpaper ~/.config/sway/wallpaper.jpg
+# set $wallpaper ~/.config/sway/lowcortisol.webp
 set $startup_sound ${HOME}/.config/startup.mp3
 set $keepassdb ~/Cloud/Documents/Database.kdbx
 include strings_pt
+include workspaces
+include outputs
+set $alt Mod1
+set $sup Mod4
+set $ctrl Control
 
 # *** SwayFX ***
 # /!\ COMMENT OUT IF YOU'RE USING REGULAR SWAY, THIS IS FOR SWAYFX
@@ -16,13 +22,13 @@ blur enable
 shadows enable
 corner_radius 0
 blur_noise .2
-blur_brightness .5
-blur_contrast .8
+blur_brightness 1
+blur_contrast 1
 blur_saturation 1
 blur_radius 1
 
-layer_effects "waybar" blur enable; shadows enable;
-layer_effects "notifications" blur enable; shadows enable; 
+layer_effects "waybar" blur disable; shadows disable;
+#layer_effects "notifications" blur enable; shadows enable; 
 
 # *** Startup | Inicialização ***
 include startup
@@ -50,6 +56,14 @@ input "1739:52780:SYNA2BA6:00_06CB:CE2C_Touchpad" {
     accel_profile adaptive
 }
 
+# Waybar
+bar {
+    swaybar_command waybar
+    position top
+    mode hide
+    modifier $sup
+}
+
 # Run | Execute:	swaymsg -t get_outputs
 #			man sway-output
 # To get the monitors IDs
@@ -73,14 +87,11 @@ output eDP-1 {
 focus_follows_mouse no
 focus_on_window_activation none
 
-set $gaps_inner_default 5
-set $gaps_outer_default 5
+set $gaps_inner_default 2
+set $gaps_outer_default 2
 gaps inner $gaps_inner_default
 gaps outer $gaps_outer_default
 
-set $alt Mod1
-set $sup Mod4
-set $ctrl Control
 set $paper bash -c 'swww img "$(find ${HOME}/Pictures/Wallpapers/ -name "*[jJpP][nNpP][gG]" | shuf -n1)" &'
 
 # To start in tabbed mode, like on OpenBox, you can set: workspace_layout default|stacking|tabbed
@@ -105,13 +116,13 @@ font pango:"UbuntuMono Nerd Font" 10
 #font pango:monospace 0.001
 #titlebar_padding 1
 #titlebar_border_thickness 0
-#default_floating_border normal 4
+default_floating_border normal 0
 
 # mode hide
-hide_edge_borders smart
+#hide_edge_borders smart
 # hide_edge_borders both
-# hide_edge_borders --i3 both
-# hide_edge_borders --i3 smart
+#hide_edge_borders --i3 both
+hide_edge_borders --i3 smart
 
 floating_modifier Mod1
 
@@ -129,11 +140,13 @@ focus_on_window_activation focus
 #set_from_resource $bg background
 
 # classe                borda      fundo     texto        ind.         borda filho
-client.focused_inactive #4f4f4fA0  #303030F0 #FFFFFFFF    #aeff00A0    #303030F0
-client.focused		#000000D0  #00000DF0 #ffffffff    #ffcf7cD0    #00000DF0
-client.unfocused        #000000A0  #000000C0 #ffffffff    #ffcf7cA0    #000000C0
+client.focused_inactive #000000A0  #000000C0 #FFFFFFFF    #aeff00A0    #303030F0
+client.focused		#000000A0  #00000DF0 #ffffffff    #ffcf7cD0    #00000DF0
+client.unfocused        #000000A0  #000000A0 #ffffffff    #ffcf7cA0    #000000C0
 #client.urgent           #2f343a  #900000 #ffffff    #900000    #900000
 #client.placeholder      #000000  #0c0c0c #ffffff    #000000    #0c0c0c
+
+titlebar_border_thickness 3
 
 #shock#f700ff | #abacate#aeff00 | #semisalmon~laranja~fosco#ffcf7c
 
@@ -334,7 +347,7 @@ bindsym $sup+Shift+8 move container to workspace number $ws8
 bindsym $sup+Shift+9 move container to workspace number $ws9
 bindsym $sup+Shift+0 move container to workspace number $ws10
 
-bindsym $sup+d workspace back_and_forth
+#bindsym $sup+d workspace back_and_forth
 
 # *** Window Modes | Modos da janela ***
 # On i3 the floating mode would be like:
