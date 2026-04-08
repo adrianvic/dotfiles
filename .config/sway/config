@@ -210,7 +210,7 @@ bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_SINK@ toggle
 #bindsym XF86AudioMicMute exec "amixer set Capture toggle"
 
 # Pavucontrol
-bindsym $sup+p exec pavucontrol
+bindsym $sup+p exec $term -e pulsemixer
 
 # Brighteness | Brilho
 bindsym XF86MonBrightnessUp exec brightnessctl set 10%+
@@ -290,9 +290,9 @@ bindsym $sup+Space exec rofi -no-lazy-grab -show drun -modi drun
 bindsym $sup+l exec swaylock
 
 # Screenshot | Captura de tela
-bindsym $ctrl+Shift+Print exec bash -c 'grim -t png - | wl-copy && wl-paste > "${HOME}/Pictures/Capture/$(date +"%Y-%m-%d %H:%M:%S") - Capture.png"'
-bindsym $ctrl+Print exec bash -c 'grim -t png | wl-copy'
-bindsym Print exec bash -c 'slurp | grim -g - - | wl-copy'
+#bindsym $ctrl+Shift+Print exec bash -c 'grim -t png - | wl-copy && wl-paste > "${HOME}/Pictures/Capture/$(date +"%Y-%m-%d %H:%M:%S") - Capture.png"'
+bindsym Print exec bash -c "grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') - | wl-copy" 
+bindsym $ctrl+Shift+Print exec bash -c 'slurp | grim -g - - | wl-copy'
 
 # Screen recording | Gravar tela
 #bindsym $ctrl+$alt+r exec bash -c '$term -e ffmpeg -video_size 1360x768 -framerate 25 -f x11grab -i :0.0 -f pulse -ac 2 -i default ${HOME}/Videos/Tela_$(date +%d-%m-%Y_%H:%M:%S).mkv'
