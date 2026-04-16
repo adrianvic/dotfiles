@@ -4,7 +4,7 @@
 
 # *** Variables | Variáveis ***
 set $term alacritty
-set $wallpaper ~/.config/sway/wallpaper.jpg
+set $wallpaper ~/.config/wallpapers/wallpaper.jpg
 # set $wallpaper ~/.config/sway/lowcortisol.webp
 set $startup_sound ${HOME}/.config/startup.mp3
 set $keepassdb ~/Cloud/Documents/Database.kdbx
@@ -47,8 +47,8 @@ input * xkb_numlock enabled
 input "1739:52780:SYNA2BA6:00_06CB:CE2C_Touchpad" {
     dwt false
     tap enabled
-    #drag enabled
-#    tap_button_map lmr
+    #drag enabled # Uncomment this to hold drag until click. Remova o comentário para segurar 'arrastar e soltar' até o próximo clique.
+    #tap_button_map lmr
     tap_button_map lrm
     middle_emulation enabled
     natural_scroll enabled
@@ -57,6 +57,9 @@ input "1739:52780:SYNA2BA6:00_06CB:CE2C_Touchpad" {
 }
 
 # Waybar
+# Uncomment this and enable IPC in waybar config to enable hide feature, it will appear whenever $sup is pressed.
+# Remova o comentário e habilite IPC na configuração do waybar para habilitar a função de esconder, a barra aparece quando $sup é apertado.
+#
 #bar {
 #    swaybar_command waybar
 #    position top
@@ -72,12 +75,12 @@ input "1739:52780:SYNA2BA6:00_06CB:CE2C_Touchpad" {
 output eDP-1 {
 	#res 1360x768
 	mode 1920x1080@60.008Hz
-	#Observe que o x-pos esquerdo do eDP1 é 1600 = 3200/2 e o y-pos inferior é 1020 + (1800/2) = 1920 = 0 + 1920
+	# Observe que o x-pos esquerdo do eDP1 é 1600 = 3200/2 e o y-pos inferior é 1020 + (1800/2) = 1920 = 0 + 1920
 	#pos 0 1020
 	#subpixel rgb|bgr|vrgb|vbgr|none
 	subpixel rgb
 	#background|bg <color> solid_color
- #Pode ser "90", "180", "270" para rotação; ou "flipped", "flipped-90", "flipped-180", "flipped-270" para aplicar uma rotação e inverter, ou "normal"
+  # Pode ser "90", "180", "270" para rotação; ou "flipped", "flipped-90", "flipped-180", "flipped-270" para aplicar uma rotação e inverter, ou "normal"
 	#transform 180
 	#dpms on
 	#scale 2
@@ -460,7 +463,7 @@ exec paplay "$startup_sound" --volume=76767 &
 exec xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2 &
 
 # dbus-update-activation-environment --systemd --all &
-exec systemctl --user import-environment WAYLAND_DISPLAY & dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE &
+exec systemctl --user import-environment WAYLAND_DISPLAY & dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway XDG_SESSION_TYPE &
 
 # https://github.com/swaywm/swaylock/issues/99
 exec swayidle -w timeout 300 'imv-wayland -x -t 1 -f /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png & sleep 0.25 ; swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' timeout 315 'swaylock -f' before-sleep 'swaylock -f ; sleep 1' &
@@ -470,8 +473,15 @@ exec bash -c 'wl-paste --type image --watch cliphist store & wl-paste --type tex
 
 #- KWallet (keyring)
 # exec kwalletd6
+#!! In theory, the instructions below should work, but I couldn't get it working.
+#!! Em teoria, as instruções abaixo devem funcionar, mas não consegui aplicá-las corretamente.
 #! Removed from here because the correct way to set this up is with pam. On Arch, install kwallet-pam and add `session optional pam_kwallet.so` to the end of the `session` section of /etc/pam.d/login.
 #! Removi daqui, já que o jeito correto de fazer isso é com o pam. No Arch, instale kwallet-pam e adicione `session optional pam_kwallet.so` no final da seção `session` de /etc/pam.d/login.
+
+# Gnome keyring
+exec_always eval $(gnome-keyring-daemon --start --components=secrets,ssh)
+#! Last resort to have a working keyring without giving my newborn to satan
+#! Última tentativa de ter um keyring funcional sem entregar meu primogênito para satan
 
 # Xwayland
 xwayland enable
