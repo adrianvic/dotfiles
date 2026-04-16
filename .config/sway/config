@@ -3,7 +3,7 @@
 # Por tenkuma, originalmente por Felipe Facundes
 
 # *** Variables | Variáveis ***
-set $term kitty
+set $term alacritty
 set $wallpaper ~/.config/sway/wallpaper.jpg
 # set $wallpaper ~/.config/sway/lowcortisol.webp
 set $startup_sound ${HOME}/.config/startup.mp3
@@ -57,12 +57,12 @@ input "1739:52780:SYNA2BA6:00_06CB:CE2C_Touchpad" {
 }
 
 # Waybar
-bar {
-    swaybar_command waybar
-    position top
-    mode hide
-    modifier $sup
-}
+#bar {
+#    swaybar_command waybar
+#    position top
+#    mode hide
+#    modifier $sup
+#}
 
 # Run | Execute:	swaymsg -t get_outputs
 #			man sway-output
@@ -468,8 +468,10 @@ exec swayidle -w timeout 300 'imv-wayland -x -t 1 -f /usr/share/backgrounds/sway
 # Clipboard Wayland | Área de transferência Wayland
 exec bash -c 'wl-paste --type image --watch cliphist store & wl-paste --type text --watch cliphist -max-dedupe-search 750 -max-items 750 store &' &
 
-# KWallet (keyring)
-exec kwalletd6
+#- KWallet (keyring)
+# exec kwalletd6
+#! Removed from here because the correct way to set this up is with pam. On Arch, install kwallet-pam and add `session optional pam_kwallet.so` to the end of the `session` section of /etc/pam.d/login.
+#! Removi daqui, já que o jeito correto de fazer isso é com o pam. No Arch, instale kwallet-pam e adicione `session optional pam_kwallet.so` no final da seção `session` de /etc/pam.d/login.
 
 # Xwayland
 xwayland enable
