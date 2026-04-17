@@ -48,7 +48,19 @@ swayfx swayidle swaybg waybar rofi wlrctl cliphist light ly <kwalletd6 or gnome-
 </details>
 
 # SwayWM
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/cab0d46d-5e81-4aa5-9487-4ca52c719ebc" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/9a8433fc-e737-423d-aa55-97eb0e033f84" />
+
+<details>
+  <summary>Older looks</summary>
+
+  You can find those older versions in the [releases](https://github.com/adrianvic/dotfiles/releases), please refer to the version's README in order to have a stable experience. Older dotfiles may be incomplete or have issues, since I'm improving it for my own use constantly.
+  
+  ## v2
+  <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/ad93ce38-d1f0-4511-96f7-ff4e7865ce0b" />
+
+  ## v1
+  <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/fa54e217-c532-430e-9918-038688de85e1" />
+</details>
 
 ## Changing language
 This is not a tutorial on changing your system language, this will only change the language of the configuration strings.
