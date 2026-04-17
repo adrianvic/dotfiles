@@ -149,7 +149,7 @@ The config files contain my curated list of wallpapers.
   <img alt="image" src=".config/wallpapers/wallpaper.jpg"/>
 
   ### Description
-  Stunning cat sitting in a rock, with a beautiful view of the sky - which I **always** love. I have this one since 2022 and been using it ocasionally.
+  Stunning cat sitting on a rock, with a beautiful view of the sky - which I **always** love. I have this one since 2022 and been using it ocasionally.
 
   ## Towers
   <img alt="image" src=".config/wallpapers/Towers.jpg"/>
