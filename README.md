@@ -1,6 +1,12 @@
 # Adrian's dotfiles
 This is the repository for my dotfiles for Sway, forked from [Flipe Facundes](https://github.com/felipefacundes/dotfiles).
 
+## Setting up 
+ - Install [the dependencies](#Dependencies)
+ - Clone or download the repo as a zip file
+ - Copy `.config` to your `~/.config`, make sure to backup any important stuff that would be overwritten!
+ - If you want the ly-dm config, copy `.config/ly/config.ini` to `/etc/ly/config.ini`
+
 ## Dependencies
 
 > [!IMPORTANT]
@@ -9,35 +15,35 @@ This is the repository for my dotfiles for Sway, forked from [Flipe Facundes](ht
 The dotfiles configuration references a lot of packages that may not be installed on your system:
 
 ```
-swayfx swayidle swaybg waybar rofi wlrctl cliphist lights ly kwalletd6 rofi-power-menu grim wl-clipboard xorg-xprop libpulse dunst rofi-pulse-select soteria keepmenu python-pykeepass ydotool
+swayfx swayidle swaybg waybar rofi wlrctl cliphist light ly <kwalletd6 or gnome-keyring> rofi-power-menu grim wl-clipboard xorg-xprop libpulse dunst rofi-pulse-select soteria keepmenu python-pykeepass ydotool
 ```
 
 <details>
   <summary>Dependency table</summary>
 
-| Name              | Reason                                                                                                            |
-|-------------------|-------------------------------------------------------------------------------------------------------------------|
-| swayfx            | Window manager ¯\_(ツ)_/¯                                                                                         |
-| swayidle          | Puts your computer to sleep after certain amount of time.                                                         |
-| swaybg            | Wallpaper util                                                                                                    |
-| waybar            | Status bar                                                                                                        |
-| rofi              | Application/power menu, also used for switching audio in/outputs and accessing KeePass DBs.                       |
-| wlrctl            | Moving the cursor with keyboard keybinds.                                                                         |
-| cliphist          | Waybar's "[Clipboard]" button uses to show clipboard history.                                                     |
-| lights            | Backlight control                                                                                                 |
-| ly                | Login screen                                                                                                      |
-| kwalletd6         | Keyring                                                                                                           |
-| rofi-power-menu   | Power options provider for Rofi                                                                                   |
-| grim              | Used to select screen sections for screenshots, only needed for selection screenshot.                             |
-| wl-clipboard      | Provides control over Wayland clipboard.                                                                          |
-| xorg-xprop        | Used to set XWayland display scale.                                                                               |
-| libpulse          |                                                                                                                   |
-| dunst             | Delivers notifications, some apps (Electron-based) will hang when you receive a notification if it's not present. |
-| rofi-pulse-select | Provides audio in/output for Rofi.                                                                                |
-| soteria           | Polkit, asks for elevation when needed. Akin to Windows' ACL.                                                     |
-| keepmenu          | KeePass provider for Rofi                                                                                         |
-| python-pykeepass  | Dependency of KeepMenu                                                                                            |
-| ydotool           | KeepMenu uses this to type passwords.                                                                             |
+| Name                      | Reason                                                                                                            |
+|---------------------------|-------------------------------------------------------------------------------------------------------------------|
+| swayfx                    | Window manager ¯\_(ツ)_/¯                                                                                         |
+| swayidle                  | Puts your computer to sleep after certain amount of time.                                                         |
+| swaybg                    | Wallpaper util                                                                                                    |
+| waybar                    | Status bar                                                                                                        |
+| rofi                      | Application/power menu, also used for switching audio in/outputs and accessing KeePass DBs.                       |
+| wlrctl                    | Moving the cursor with keyboard keybinds.                                                                         |
+| cliphist                  | Waybar's "[Clipboard]" button uses to show clipboard history.                                                     |
+| light                     | Backlight control                                                                                                 |
+| ly                        | Login screen                                                                                                      |
+| kwalletd6 / gnome-keyring | Keyring (manages your passwords and keys)                                                                         |
+| rofi-power-menu           | Power options provider for Rofi                                                                                   |
+| grim                      | Used to select screen sections for screenshots, only needed for selection screenshot.                             |
+| wl-clipboard              | Provides control over Wayland clipboard.                                                                          |
+| xorg-xprop                | Used to set XWayland display scale.                                                                               |
+| libpulse                  |                                                                                                                   |
+| dunst                     | Delivers notifications, some apps (Electron-based) will hang when you receive a notification if it's not present. |
+| rofi-pulse-select         | Provides audio in/output for Rofi.                                                                                |
+| soteria                   | Polkit, asks for elevation when needed. Akin to Windows' ACL.                                                     |
+| keepmenu                  | KeePass provider for Rofi                                                                                         |
+| python-pykeepass          | Dependency of KeepMenu                                                                                            |
+| ydotool                   | KeepMenu uses this to type passwords.                                                                             |
 
 </details>
 
@@ -56,7 +62,7 @@ Edit `.config/sway/startup` and add `exec yourapplication`.
 <details>
   <summary>Default modifiers</summary>
 
-- `Mod` is Super by default. Shows waybar while pressed.
+- `Mod` is Super by default. ~Shows waybar while pressed~ disabled, you can enable that behaviour by uncommenting some lines in the sway/waybar config.
 - `Menu` is the context menu button, generally only present in full-size keyboards.
 
 </details>
@@ -127,6 +133,36 @@ In .config/sway/config replace XX from the line import strings_XX to a language 
 - `Alt+Shift+Apostrophe` Change audio input (source)
 
 # ly display manager
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/5e8a8ab3-e872-4a85-b248-202ba8d9a36b" />
+<details>
+  <summary>Ly Screenshot</summary>
+  <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/5e8a8ab3-e872-4a85-b248-202ba8d9a36b" />
+</details>
 
 You can also replace your display manager with ly, a TUI display manager. The config file in `.config/ly/` will not work, you have to copy it to `/etc/ly/config.ini` after installing the package `ly` and enabling the systemd service (also, disable your current DM).
+
+# Wallpapers
+The config files contain my curated list of wallpapers.
+<details>
+  <summary>Wallpaper list</summary>
+
+  ## CoolCat!
+  <img alt="image" src=".config/wallpapers/wallpaper.jpg"/>
+
+  ### Description
+  Stunning cat sitting in a rock, with a beautiful view of the sky - which I **always** love. I have this one since 2022 and been using it ocasionally.
+
+  ## Towers
+  <img alt="image" src=".config/wallpapers/Towers.jpg"/>
+
+  ### Description
+  Found this one in a OSU beatmap (this one, [Dimrain47 - Cloud Control](https://osu.ppy.sh/beatmapsets/1550498#osu/3797111)), couldn't find anything useful with reverse image search. God, these towers look gorgeous!!!
+
+  ## Worlds
+  <img alt="image" src=".config/wallpapers/Porter Robinson - Worlds.jpg"/>
+
+  ### Author
+  Porter Robinson
+
+  ### Description
+  I struggled to even find this low resolution Worlds wallpaper, it's a shame!
+</details>
