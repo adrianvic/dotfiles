@@ -1,7 +1,10 @@
 # Adrian's dotfiles
 This is the repository for my dotfiles for Sway, forked from [Flipe Facundes](https://github.com/felipefacundes/dotfiles).
 
-## Setting up 
+## Setting up
+> [!IMPORTANT]
+> I use my laptop in a two monitor setup, if you don't have a built-in monitor (or it's output name is anything else than eDP-1) you'll only see the secondary layout in your HDMI output, in that case, please go to Waybar config and change the output of the first bar and disable/change the output of the second.
+> 
  - Install [the dependencies](#Dependencies)
  - Clone or download the repo as a zip file
  - Copy `.config` to your `~/.config`, make sure to backup any important stuff that would be overwritten!
@@ -48,18 +51,22 @@ swayfx swayidle swaybg waybar rofi wlrctl cliphist light ly <kwalletd6 or gnome-
 </details>
 
 # SwayWM
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/9a8433fc-e737-423d-aa55-97eb0e033f84" />
+
+<img alt="image" src="https://i.postimg.cc/J0LQMNnD/signal-2026-05-17-143009-002.jpg"/>
 
 <details>
   <summary>Older looks</summary>
 
   You can find those older versions in the [releases](https://github.com/adrianvic/dotfiles/releases), please refer to the version's README in order to have a stable experience. Older dotfiles may be incomplete or have issues, since I'm improving it for my own use constantly.
+
+  ## v3
+  <img alt="image" src="https://github.com/user-attachments/assets/9a8433fc-e737-423d-aa55-97eb0e033f84" />
   
   ## v2
-  <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/ad93ce38-d1f0-4511-96f7-ff4e7865ce0b" />
+  <img alt="image" src="https://github.com/user-attachments/assets/ad93ce38-d1f0-4511-96f7-ff4e7865ce0b" />
 
   ## v1
-  <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/fa54e217-c532-430e-9918-038688de85e1" />
+  <img alt="image" src="https://github.com/user-attachments/assets/fa54e217-c532-430e-9918-038688de85e1" />
 </details>
 
 ## Changing language
@@ -157,8 +164,14 @@ The config files contain my curated list of wallpapers.
 <details>
   <summary>Wallpaper list</summary>
 
+  ## Yuri Plisetsky
+  <img alt="image" src=".config/wallpapers/wallpaper.png"/>
+
+  ## Victor Nikiforov
+  <img alt="image" src=".config/wallpapers/wallpaperHDMI.jpg"/>
+
   ## CoolCat!
-  <img alt="image" src=".config/wallpapers/wallpaper.jpg"/>
+  <img alt="image" src=".config/wallpapers/Cool Cat.jpg"/>
 
   ### Description
   Stunning cat sitting on a rock, with a beautiful view of the sky - which I **always** love. I have this one since 2022 and been using it ocasionally.
