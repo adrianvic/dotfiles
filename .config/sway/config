@@ -4,7 +4,8 @@
 
 # *** Variables | Variáveis ***
 set $term alacritty
-set $wallpaper ~/.config/wallpapers/wallpaper.jpg
+set $wallpaper ~/.config/wallpapers/wallpaper.png
+set $wallpaperHDMI ~/.config/wallpapers/wallpaperHDMI.jpg
 # set $wallpaper ~/.config/sway/lowcortisol.webp
 set $startup_sound ${HOME}/.config/startup.mp3
 set $keepassdb ~/Cloud/Documents/Database.kdbx
@@ -164,6 +165,9 @@ bindsym $ctrl+$alt+Escape exec FOCUSED_APP_ID=$(swaymsg -t get_tree | jq '.. | s
 
 # Clipboard wayland
 bindsym $ctrl+$alt+c exec bash -c 'pkill -9 wofi; cliphist list | wofi --show dmenu | cliphist decode | wl-copy'
+
+# Color picker | Seletor de Cores
+bindsym $sup+C exec hyprpicker --autocopy
 
 # Task Manager | Gerenciador de Janelas
 bindsym $ctrl+Escape exec $term -e htop
@@ -462,9 +466,6 @@ exec paplay "$startup_sound" --volume=76767 &
 # Sets Xwayland scale | Seta escala do Xwayland 
 exec xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2 &
 
-# dbus-update-activation-environment --systemd --all &
-exec systemctl --user import-environment WAYLAND_DISPLAY & dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway XDG_SESSION_TYPE &
-
 # https://github.com/swaywm/swaylock/issues/99
 exec swayidle -w timeout 300 'imv-wayland -x -t 1 -f /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png & sleep 0.25 ; swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' timeout 315 'swaylock -f' before-sleep 'swaylock -f ; sleep 1' &
 
@@ -472,14 +473,16 @@ exec swayidle -w timeout 300 'imv-wayland -x -t 1 -f /usr/share/backgrounds/sway
 exec bash -c 'wl-paste --type image --watch cliphist store & wl-paste --type text --watch cliphist -max-dedupe-search 750 -max-items 750 store &' &
 
 #- KWallet (keyring)
-# exec kwalletd6
+exec kwalletd6
 #!! In theory, the instructions below should work, but I couldn't get it working.
 #!! Em teoria, as instruções abaixo devem funcionar, mas não consegui aplicá-las corretamente.
 #! Removed from here because the correct way to set this up is with pam. On Arch, install kwallet-pam and add `session optional pam_kwallet.so` to the end of the `session` section of /etc/pam.d/login.
 #! Removi daqui, já que o jeito correto de fazer isso é com o pam. No Arch, instale kwallet-pam e adicione `session optional pam_kwallet.so` no final da seção `session` de /etc/pam.d/login.
+#! Gnome Keyring didn't work :(
+#! Gnome Keyring não funcionou :(
 
 # Gnome keyring
-exec_always eval $(gnome-keyring-daemon --start --components=secrets,ssh)
+#exec_always eval $(gnome-keyring-daemon --start --components=secrets,ssh)
 #! Last resort to have a working keyring without giving my newborn to satan
 #! Última tentativa de ter um keyring funcional sem entregar meu primogênito para satan
 
@@ -487,7 +490,8 @@ exec_always eval $(gnome-keyring-daemon --start --components=secrets,ssh)
 xwayland enable
 
 # Wallpaper | Papel de parede
-exec swaybg --image $wallpaper
+exec swaybg --output eDP-1 --image $wallpaper --mode fill
+exec swaybg --output HDMI-A-1 --image $wallpaperHDMI --mode fill
 
 # Fix for broken keyboard key | Gambiarra por causa da minha tecla defeituosa
 bindsym $alt+1 exec wtype "2"
@@ -502,3 +506,7 @@ exec --no-startup-id soteria
 
 # Automation, apps will not be able to type in your behalf without this | Automação, apps não vão poder escrever por você sem isso
 exec --no-startup-id ydotoold
+
+# xdg-desktop-portal-wlr
+# Needed for screencapture and screencast | Necessário para captura e gravação da tela
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway

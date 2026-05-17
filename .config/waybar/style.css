@@ -54,8 +54,8 @@ nord15 #b48ead
 }
 
 window#waybar {
-    /* background:rgba (0, 0, 0, 0.9); */
-    background: rgba(59, 69, 83, 0.99);
+    background:rgba (0, 0, 0, 0.6);
+    /* background: rgba(59, 69, 83, 0.99); */
 }
 
 #workspaces button {

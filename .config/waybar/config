@@ -22,7 +22,7 @@
         "disable-scroll": true,
         //"all-outputs": true,
         //"format": "{name}",
-	"format": "[{name}] {icon}",
+	    "format": "[{name}] {icon}",
         "format-icons": {
         //    "1": "",
         //    "2": "",
